@@ -1,0 +1,64 @@
+<template>
+  <div id="app">
+    <div class="ui inverted segment header-segment">
+      <div class="ui container">
+        <div class="ui secondary pointing menu large">
+          <router-link to="/words" class="header item brand">Vocab Builder</router-link>
+
+          <div class="right menu">
+            <router-link v-if="user.loggedIn" to="/words" class="item nav-item">All Words</router-link>
+            <router-link v-if="user.loggedIn" to="/new" class="item nav-item">Add Word</router-link>
+            <router-link v-if="user.loggedIn" to="/test" class="item nav-item">Test</router-link>
+            <router-link v-if="user.loggedIn && user.role === 'admin'" to="/users" class="item nav-item">User Management</router-link>
+
+            <router-link v-if="!user.loggedIn" to="/login" class="item nav-item">Login</router-link>
+            <router-link v-if="!user.loggedIn" to="/register" class="item nav-item">Register</router-link>
+
+            <div v-if="user.loggedIn" class="item user-info">
+              <span class="user-avatar">{{ user.username ? user.username.charAt(0).toUpperCase() : '?' }}</span>
+              <span class="user-name">{{ user.username }}</span>
+              <span class="role-badge">{{ user.role }}</span>
+            </div>
+
+            <a v-if="user.loggedIn" class="item logout" @click="logout">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui container main-content" style="margin-top:1rem;">
+      <flash-message></flash-message>
+      <router-view />
+    </div>
+  </div>
+</template>
+
+<script>
+import userStore from './user/UserStore';
+export default {
+  name: 'App',
+  computed: {
+    user() { return userStore; }
+  },
+  methods: {
+    logout() {
+      userStore.logout();
+      this.$router.push('/login');
+    }
+  }
+};
+</script>
+
+<style>
+.header-segment { padding: 0.4rem 0; background: #1b70ff; }
+.brand { font-weight: 700; color: #fff !important; font-size: 1.1rem; }
+.nav-item { color: rgba(255,255,255,0.95) !important; }
+.nav-item.router-link-active, .nav-item.router-link-exact-active { background: rgba(255,255,255,0.12); border-radius:6px; }
+.brand.router-link-active { text-decoration: underline; }
+.user-info { display:flex; align-items:center; gap:0.5rem; color:#fff; padding:0 0.5rem; }
+.user-avatar { background:#fff;color:#1b70ff;border-radius:50%;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;font-weight:700; }
+.role-badge { background: rgba(255,255,255,0.15); color:#fff; padding:2px 6px; border-radius:12px; font-size:0.8rem; margin-left:6px; }
+.logout { color:#fff !important; }
+.main-content { padding-top:1rem; }
+.router-link-active, .nav-item.router-link-active { text-decoration:underline; }
+</style>

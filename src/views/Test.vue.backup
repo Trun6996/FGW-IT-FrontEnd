@@ -1,0 +1,117 @@
+<template>
+  <div>
+    <h2 class="ui header">Test Yourself</h2>
+    <div class="ui center aligned segment" style="max-width:700px;margin:0 auto">
+      <div v-if="loading" class="ui active inline loader"></div>
+
+      <div v-else>
+        <div v-if="!current">
+          <button class="ui huge primary button" @click="next">Start Test</button>
+        </div>
+
+        <div v-else class="ui piled segment">
+          <h3 class="ui header">
+            What is the
+            <span v-if="targetLang === 'german'">German</span>
+            <span v-else>Vietnamese</span>
+            word for:
+          </h3>
+
+          <p style="font-size:1.6rem;font-weight:700">{{ current.english }}</p>
+
+          <div class="ui form" style="margin:1rem 0">
+            <input
+              type="text"
+              v-model="answer"
+              :placeholder="targetLang === 'german' ? 'Type German...' : 'Type Vietnamese...'"
+            />
+          </div>
+
+          <div>
+            <button class="ui green button" @click="check">Check</button>
+            <button class="ui button" @click="next" style="margin-left:0.5rem">Next</button>
+          </div>
+
+          <div v-if="result" class="ui message" :class="result.correct ? 'positive' : 'negative'" style="margin-top:1rem">
+            <p>{{ result.message }}</p>
+            <p v-if="!result.correct">
+              Correct answer:
+              <strong>
+                {{ targetLang === 'german' ? current.german : current.vietnamese }}
+              </strong>
+            </p>
+          </div>
+        </div>
+
+        <div v-if="error" class="ui red message" style="margin-top:1rem">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import api from "../helpers/api";
+
+export default {
+  name: "Test",
+  data() {
+    return {
+      words: [],
+      current: null,
+      targetLang: "german",
+      answer: "",
+      result: null,
+      loading: true,
+      error: null,
+    };
+  },
+  async mounted() {
+    try {
+      this.words = await api.getWords();
+    } catch (err) {
+      console.error("Failed to fetch words:", err);
+      this.error = "Cannot load words from server!";
+    } finally {
+      this.loading = false;
+    }
+  },
+  methods: {
+    next() {
+      if (!this.words.length) return;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>};  },    },          : { correct: false, message: "Wrong!" };          ? { correct: true, message: "Correct!" }        user === correct
+n      this.result =      }        return;        this.result = { correct: false, message: "Please type an answer first." };
+n      if (!user) {      const correct = (correctValue || "").trim().toLowerCase();
+n      const user = (this.answer || "").trim().toLowerCase();          : this.current.vietnamese;          ? this.current.german        this.targetLang === "german"
+n      const correctValue =      if (!this.current) return;    check() {    },      this.result = null;
+n      this.answer = "";      this.targetLang = Math.random() < 0.5 ? "german" : "vietnamese";
+n      // Random target language      this.current = this.words[Math.floor(Math.random() * this.words.length)];n      // Chọn random word

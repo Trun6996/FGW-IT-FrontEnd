@@ -1,4 +1,4 @@
-# fe-1842
+# front-end
 
 ## Project setup
 ```
