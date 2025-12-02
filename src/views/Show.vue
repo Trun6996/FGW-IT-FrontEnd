@@ -11,21 +11,21 @@
       <div class="detail-content">
         <div class="word-field">
           <label class="field-label">
-            <img src="england.png" class="flag-icon"></img> English
+            <i class="united kingdom flag"></i> English
           </label>
           <p class="field-value english-text">{{ word.english }}</p>
         </div>
 
         <div class="word-field">
           <label class="field-label">
-            <img src="german.png" class="flag-icon"></img> German
+            <i class="germany flag"></i>  German
           </label>
           <p class="field-value german-text">{{ word.german }}</p>
         </div>
 
         <div class="word-field">
           <label class="field-label">
-            <img src="vietnam.png" class="flag-icon"></img> Vietnamese
+            <i class="vietnam flag"></i> Vietnamese
           </label>
           <p class="field-value vietnamese-text">{{ word.vietnamese }}</p>
         </div>

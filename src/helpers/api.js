@@ -32,8 +32,20 @@ export async function deleteWord(id) {
   const res = await http.delete(`/words/${id}`);
   return res.data;
 }
+export async function getUsers() {
+  const res = await http.get('/users');
+  return res.data;
+}
 
+export async function deleteUser(id) {
+  const res = await http.delete(`/users/${id}`);
+  return res.data;
+}
+export async function updateUser(id, payload) {
+  const res = await http.put(`/users/${id}`, payload);
+  return res.data;
+}
 // default export so existing imports like `import api from '../helpers/api'` work
-const api = { getWords, getWord, createWord, updateWord, deleteWord };
+const api = { getWords, getWord, createWord, updateWord, deleteWord, getUsers, deleteUser, updateUser };
 export default api;
 // ...existing code...

@@ -30,7 +30,7 @@ export default {
   methods: {
     async loadUsers() {
       try {
-        this.users = await api.getUsers();
+        this.users = await api.getUsers(); // Fetch users from API
       } catch (err) {
         this.error = 'Failed to load users.';
       }
