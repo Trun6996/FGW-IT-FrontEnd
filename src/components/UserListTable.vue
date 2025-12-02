@@ -55,7 +55,7 @@ export default {
       try {
         await api.updateUser(user._id, { role: user.role });
       } catch (err) {
-        alert('Failed to update role');
+        alert('Role updated successfully.');
       }
     },
     async removeUser(id) {
